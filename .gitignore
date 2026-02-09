@@ -1,0 +1,4 @@
+# Screenshots (design reference, not needed in prod)
+screencapture-*.png
+node_modules/
+.DS_Store
