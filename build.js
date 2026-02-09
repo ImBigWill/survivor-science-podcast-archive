@@ -154,6 +154,12 @@ function truncate(text, maxLen = 200) {
   return plain.substring(0, maxLen).replace(/\s+\S*$/, '') + '...';
 }
 
+function faviconHTML(prefix = '') {
+  return `
+  <link rel="apple-touch-icon" sizes="180x180" href="${prefix}images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="${prefix}images/favicon-32x32.png">`;
+}
+
 function navHTML(activePage = 'home') {
   return `
   <!-- Top Banner -->
@@ -267,8 +273,9 @@ function generateHomePage(episodes, podcastMeta) {
   <meta name="description" content="${escapeHtml(cleanDescription(stripHtml(podcastMeta.description)))}">
   <meta property="og:title" content="Survivor Science Podcast Archive">
   <meta property="og:description" content="${escapeHtml(cleanDescription(stripHtml(podcastMeta.description)))}">
-  <meta property="og:image" content="${podcastMeta.image}">
+  <meta property="og:image" content="images/og-image.png">
   <meta property="og:type" content="website">
+  ${faviconHTML()}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -342,6 +349,7 @@ function generateEpisodesPage(episodes) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>All Episodes - Survivor Science Podcast Archive</title>
   <meta name="description" content="Browse all episodes of the Survivor Science podcast.">
+  ${faviconHTML()}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -394,6 +402,7 @@ function generateEpisodePage(ep, episodes, allEpisodes) {
   <meta property="og:description" content="${escapeHtml(truncate(ep.description, 160))}">
   <meta property="og:image" content="${ep.episodeImage || 'images/podcast-artwork.jpg'}">
   <meta property="og:type" content="article">
+  ${faviconHTML('../')}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -453,6 +462,7 @@ function generateAboutPage(podcastMeta, episodes) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About - Survivor Science Podcast Archive</title>
   <meta name="description" content="About the Survivor Science podcast and host Will Schmierer.">
+  ${faviconHTML()}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
